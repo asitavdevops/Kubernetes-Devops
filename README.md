@@ -41,10 +41,11 @@ In POD we have 3 component which gets created in Worker node.
 	Either we can use dockersim , containerd,crio all are compitaror so insread of using dockersim we can use any other container runtime which impliments kubernates container interface.
 3. kube-proxy - handles networking and load balancing,this is basically provides you networking every pod that we are creating it has to be allocated with some ip address and load balancing capablities 
 
- Pod: Smallest unit in Kubernetes , Contains one or more containers,Pod = Wrapper around container
- Kubelet:Agent inside node,Talks to control plane,Ensures pod is running
- Container Runtime:Actually runs containers
- Easy Analogy (Best for Remembering) : 
+**Pod:** Smallest unit in Kubernetes , Contains one or more containers,Pod = Wrapper around container
+ **Kubelet:** Agent inside node,Talks to control plane,Ensures pod is running
+**Container Runtime:** Actually runs containers
+
+**Easy Analogy (Best for Remembering) :**
  Control Plane = Manager
  Worker Node = Employees
  Pod = Task
