@@ -12,43 +12,19 @@ In Docker, if a container crashes → it will not recover automatically.
 Note- Kubernetes provides auto-healing using:
 ReplicaSet / Deployment
 It automatically restarts or replaces failed containers.
-
-. No auto-scaling
+**3.No auto-scaling**
 Docker cannot handle traffic increase automatically.
-
-👉 Kubernetes solves this using:
-
+Kubernetes solves this using:
 HPA (Horizontal Pod Autoscaler)
-
 It increases or decreases pods based on traffic/load.
-
-4. Lack of enterprise features
+**4. Lack of enterprise features**
 Docker alone does not provide:
-
 Load balancing
-
 Rolling updates
-
 Service discovery
+**Kubernetes provides all these enterprise-level features:**
 
-👉 Kubernetes provides all these enterprise-level features:
+**Kubernates Archchitecture:**
 
-Load balancing
 
-Rolling updates (no downtime deployment)
 
-Service discovery
-
-🔹 Real-world understanding
-
-If I deploy an app using Docker on one server and it crashes → app goes down.
-
-But in Kubernetes → app runs on multiple nodes, so it stays available.
-
-During high traffic (like sale time), Docker cannot scale automatically.
-
-Kubernetes automatically increases pods to handle load.
-
-🔹 Final Interview Line
-
-👉 Docker is used to create containers, but Kubernetes is used to manage containers at scale with features like auto-healing, auto-scaling, and high availability.
