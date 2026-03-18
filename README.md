@@ -36,10 +36,10 @@ it gets created in Worker node .
 Control Plane (Master) This is the brain and it Decides: Where to run container,When to create/delete pods,Maintains cluster state
 Worker Node (Data Plane):This is where actual app runs
 In POD we have 3 component which gets created in Worker node.
-1. Kubelet - Its is responsible maitaining the K8 pod, like if its running or not if not running then  as it has a feature of auto healing then inform k8 that the pod is not running .
-2. container Runtime - In side K8 POD we will be having container so we need container run time to run the container .But only difference is in K8 docker is not mandatory 
+1. **Kubelet** - Its is responsible maitaining the K8 pod, like if its running or not if not running then  as it has a feature of auto healing then inform k8 that the pod is not running .
+2. **container Runtime** - In side K8 POD we will be having container so we need container run time to run the container .But only difference is in K8 docker is not mandatory 
 	Either we can use dockersim , containerd,crio all are compitaror so insread of using dockersim we can use any other container runtime which impliments kubernates container interface.
-3. kube-proxy - handles networking and load balancing,this is basically provides you networking every pod that we are creating it has to be allocated with some ip address and load balancing capablities 
+3. **kube-proxy** - handles networking and load balancing,this is basically provides you networking every pod that we are creating it has to be allocated with some ip address and load balancing capablities 
 
 **Pod:** Smallest unit in Kubernetes , Contains one or more containers,Pod = Wrapper around container
  **Kubelet:** Agent inside node,Talks to control plane,Ensures pod is running
