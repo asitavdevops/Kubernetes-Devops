@@ -67,6 +67,7 @@ B) Worker Nodes (Data Plane) : (Run the actual applications (containers inside P
 4. Controller Manager - Maintains desired state
    ex : If 3 pods needed but only 2 running → creates 1 more , Includes: Node Controller ,ReplicaSet Controller ,Job Controller
 5. Cloud Controller Manager (CCM): The Cloud Controller Manager (CCM) is a Kubernetes control plane component that allows Kubernetes to 	interact with your cloud provider (like AWS, Azure, GCP).
+   Ex: On premise its not needed only in cloude this k8 component is required 
 
 **B) Worker Nodes (Data Plane)**
 1. Kubelet - Agent running on each node ,Talks to API Server ,Ensures containers are running
