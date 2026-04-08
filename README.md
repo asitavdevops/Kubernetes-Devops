@@ -51,5 +51,36 @@ In POD we have 3 component which gets created in Worker node.
  Pod = Task
  Container = Actual work
 
+============**Kubernates Archchitecture explain :**
+User → Control Plane → Worker Node → Pod → Container (Ref Kubernates-Architecture)
+
+**Explain :At a high level, Kubernetes architecture is divided into:**
+A) Control Plane (Master Node) :(Brain of k8) Manages the cluster and makes global decisions.
+B) Worker Nodes (Data Plane) : (Run the actual applications (containers inside Pods)).
+
+**A) Control Plane Components (Master Node)**
+1. API Server - Entry point of Kubernetes,All commands go through this,Acts like a front-end
+   ex - kubectl get pods
+2. etcd - Key-value database ,Stores cluster state (everything) .
+   ex : Pods info ,Node status,Configurations
+3. Scheduler - Assigns Pods to Nodes ,Decides where to run a Pod Based on:CPU / Memory,Node availability,Constraints
+4. Controller Manager - Maintains desired state
+   ex : If 3 pods needed but only 2 running → creates 1 more , Includes: Node Controller ,ReplicaSet Controller ,Job Controller
+
+**B) Worker Nodes (Data Plane)**
+1. Kubelet - Agent running on each node ,Talks to API Server ,Ensures containers are running
+2. Kube Proxy - Handles networking ,Maintains service communication
+   ex : Routes traffic to correct Pod
+3. Container Runtime - Runs containers
+   ex : containerd ,CRI-O , DockerSim
+4. Pods : Smallest unit in Kubernetes ,Contains one or more containers.
+
+
+   
+
+
+
+
+
 
 
