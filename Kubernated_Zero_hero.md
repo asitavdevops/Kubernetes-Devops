@@ -1,4 +1,8 @@
 # Kubernetes-Zero-to-Hero
+# How Devops Teams managing PROD 100 of clusters in kubernates 
+Ans: Widely used tools is kops(k8 operations) earlier used kubeadm etc .
+As a devops eng we have to deal with k8 instalations,upgrades,Modifications, Deletions of clusters all of these called as a life cycle of k8 . So to manage this life cycle we use kops , same thing can be done by Openshift, Rancher, EKS ,Argo Cd.
+
 Creating this repo with an intent to make Kubernetes easy for begineers. This is a work-in-progress repo.
 
 ## Kubernetes Installation Using KOPS on EC2
