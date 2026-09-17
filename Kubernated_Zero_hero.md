@@ -84,7 +84,7 @@ Please follow the steps carefully and read each command before executing.
 ### Create S3 bucket for storing the KOPS objects.
 
 ```
-aws s3api create-bucket --bucket kops-abhi-storage --region us-east-1
+aws s3api create-bucket --bucket kops-asitav-storage --region us-east-1
 ```
 
 ### Create the cluster 
