@@ -16,6 +16,13 @@ Dependencies required
 3. kubectl
 
 ###  Install dependencies
+aws - Run AWS CLI , sts -AWS Security Token Service, get-caller-identity - Who am I authenticated as?
+ubuntu@ip-172-31-16-156:~$ aws sts get-caller-identity 
+{
+    "UserId": "417394243622",
+    "Account": "417394243622",
+    "Arn": "arn:aws:iam::417394243622:root"
+}
 
 
 Add the new Kubernetes repository:
