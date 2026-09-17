@@ -77,6 +77,9 @@ B) Worker Nodes (Data Plane) : (Run the actual applications (containers inside P
    ex : containerd ,CRI-O , DockerSim
 4. Pods : Smallest unit in Kubernetes ,Contains one or more containers.
 
+"""
+KUBERNETES PODS | DEPLOY YOUR FIRST APP
+"""
 
    
 
