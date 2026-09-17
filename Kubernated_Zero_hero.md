@@ -15,6 +15,18 @@ Dependencies required
 2. AWS CLI
 3. kubectl
 
+Note: kubectl is needed because it is the command-line tool used to communicate with and manage a Kubernetes cluster.
+                Kubernetes Cluster
+                       │
+                       │ API requests
+                       ▼
+                    kubectl
+                       ▲
+                       │
+                       │ Commands
+                       │
+                  You / Admin
+                  
 ###  Install dependencies
 aws - Run AWS CLI , sts -AWS Security Token Service, get-caller-identity - Who am I authenticated as?
 ubuntu@ip-172-31-16-156:~$ aws sts get-caller-identity 
