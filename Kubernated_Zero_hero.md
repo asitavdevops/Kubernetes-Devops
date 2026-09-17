@@ -26,7 +26,7 @@ Note: kubectl is needed because it is the command-line tool used to communicate 
                        │ Commands
                        │
                   You / Admin
-                  
+
 ###  Install dependencies
 aws - Run AWS CLI , sts -AWS Security Token Service, get-caller-identity - Who am I authenticated as?
 ubuntu@ip-172-31-16-156:~$ aws sts get-caller-identity 
@@ -102,7 +102,7 @@ aws s3api create-bucket --bucket kops-asitav-storage --region us-east-1
 ### Create the cluster 
 
 ```
-kops create cluster --name=demok8scluster.k8s.local --state=s3://kops-abhi-storage --zones=us-east-1a --node-count=1 --node-size=t2.micro --master-size=t2.micro  --master-volume-size=8 --node-volume-size=8
+kops create cluster --name=devk8scluster.k8s.local --state=s3://kops-asitav-storage --zones=us-east-1a --node-count=1 --node-size=t2.micro --master-size=t2.micro  --master-volume-size=8 --node-volume-size=8
 ```
 
 ### Important: Edit the configuration as there are multiple resources created which won't fall into the free tier.
