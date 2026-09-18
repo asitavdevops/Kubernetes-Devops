@@ -1,1 +1,39 @@
+Run Multiple kubernates cluster locally Kubernetes in Docker (KIND-k8 in docker):
+--> Here what kind does is in side docker container it creates k8 cluster, lets say we want to run multinode k8 cluster (1 master and 2 worker nodes)
+so waht kind does is it creates 3 docker conatainers and within that 1 container creates master node (control plane) 
+and 2 containers created for worker nodes(data plane),and kind takes the responsiblities to connect from worker nodes to master node or
+data plane to control plane.
+Note: During EKS OR AKS  k8 cluster is created under VM .
+
+Prerequisite for Windowds:
+1) Docker Desktop should be up and running . check docker info or docker --version
+2) kind should be installed using power shell user check kind installation documents for windows , check kind --version
+
+Your setup flow
+Windows PowerShell
+       ↓
+Docker Desktop
+       ↓
+Kind v0.33.0       ✅
+       ↓
+Kubernetes Cluster
+       ↓
+kubectl
+       ↓
+Deploy applications
+
+"""
+Kind → Production side-by-side:
+"""
+| Step                  | Your Kind / Local command              | Production equivalent                                | What you're actually doing                       |
+| --------------------- | -------------------------------------- | ---------------------------------------------------- | ------------------------------------------------ |
+| **1. Check Docker**   | `docker --version`                     | `docker --version` / container runtime check         | Verify container runtime                         |
+| **2. Create cluster** | `kind create cluster --name mycluster` | `eksctl create cluster` / Terraform / CloudFormation | Provision Kubernetes infrastructure              |
+| **3. List clusters**  | `kind get clusters`                    | `kubectl config get-contexts`                        | See available Kubernetes contexts                |
+| **4. Check nodes**    | `kubectl get nodes`                    | `kubectl get nodes`                                  | Check worker/control-plane node health           |
+| **5. Check cluster**  | `kubectl cluster-info`                 | `kubectl cluster-info`                               | Verify Kubernetes API/control-plane connectivity |
+
+
+1) Now create a single node cluster 
+command - > kind create cluster --name=single-node-demo
 
