@@ -34,6 +34,139 @@ Kind → Production side-by-side:
 | **5. Check cluster**  | `kubectl cluster-info`                 | `kubectl cluster-info`                               | Verify Kubernetes API/control-plane connectivity |
 
 
-1) Now create a single node cluster 
-command - > kind create cluster --name=single-node-demo
+"""
+Kind installation process in local Prerequisite
+"""
+```
+1) Docker desktop should be up and running  -> run in PowerShell admin -> docker ps 
+example : 
+docker ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED        STATUS        PORTS                       NAMES
+de0c45239e3b   kindest/node:v1.34.0   "/usr/local/bin/entr…"   21 hours ago   Up 21 hours   127.0.0.1:59384->6443/tcp   single-node-demo-control-plane
 
+2) Go to kind docs and look for installation depending on OS installation commands will be different .
+       run command  in PowerShell admin 
+       example On Windows in PowerShell: curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/v0.33.0/kind-windows-amd64
+Move-Item .\kind-windows-amd64.exe c:\some-dir-in-your-PATH\kind.exe
+
+check if kind installed or not : kind --version
+
+```
+Commands to follow:
+
+1) Now create single node k8s cluster :
+->  kind create cluster --name=single-node-demo
+2) Check if cluster created : (Kind is the tool that created and manages this cluster):
+-> kind get clusters
+3) Delete a cluster :
+-> kind delete cluster --name single-node-demo
+4) check kubectl is currently configured to communicate with the single-node-demo Kind cluster :
+--> kubectl config current-context
+
+             KIND
+              │
+              │ manages
+              ▼
+       ┌─────────────────┐
+       │ single-node-demo│
+       │                 │
+       │ Kubernetes      │
+       │ Cluster         │
+       └────────┬────────┘
+                │
+                │ kubectl connects using
+                ▼
+       kind-single-node-demo
+          (context name)
+
+5) Kubernetes created a Deployment named nginx using the NGINX container image.
+-->  kubectl create deployment nginx --image nginx
+OP : deployment.apps/nginx created
+explain: Break the command into pieces:
+kubectl    create    deployment    nginx    --image nginx
+  │          │           │           │           │
+  │          │           │           │           └── Container image
+  │          │           │           └── Deployment name
+  │          │           └── Resource type
+  │          └── Action
+  └── Kubernetes command-line tool
+  
+  What did Kubernetes actually create?
+  explain : 
+  Deployment
+     │
+     │ creates/manages
+     ▼
+ ReplicaSet
+     │
+     │ creates/manages
+     ▼
+    Pod
+     │
+     │ runs
+     ▼
+ Container
+     │
+     ▼
+   NGINX
+So after your command, Kubernetes has approximately:
+Deployment: nginx
+       │
+       ▼
+ReplicaSet: nginx-xxxxxxxx
+       │
+       ▼
+Pod: nginx-xxxxxxxx-xxxxx
+       │
+       ▼
+NGINX container
+By default, your Deployment has 1 replica.
+
+6) Check what was created due to deployemnt .
+--> kubectl get deployments
+op: NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   1/1     1            1           7m2s
+
+7) check if pods created as part of deployemnt
+--> kubectl get pods
+op: NAME                     READY   STATUS    RESTARTS   AGE
+nginx-69b9cdbbdd-5jjlq   1/1     Running   0          8m25s
+
+8) check ReplicaSet
+--> kubectl get Replicasets
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-69b9cdbbdd   1         1         1       9m29s
+
+9) when you're creating, restarting, scaling, or troubleshooting applications in k8 . (-w means watch)
+--> kubectl get pods -w 
+
+10) Create multi node kind cluster or multinode kubernates cluster :
+--> For multinode instead of using command line we can use the yaml file to create that 
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+- role: control-plane
+- role: control-plane
+- role: control-plane
+- role: worker
+- role: worker
+- role: worker
+- role: worker
+- role: worker
+- role: worker
+
+--> kind create cluster --name 9-node-cluster --config=multi-node-k8s-cluster.yaml
+
+check cluster cretaed or not --> kubectl config current-context / kind get clusters
+check pods created or not --> kubectl get nodes 
+Note: Here my clusters nodes are end of the day running on containers 
+-->docker ps | grep -i 9-node-cluster 
+
+IMP> now install nginx on 9-node-cluster cluster nodes and host the nginx app with 8888:80 (local:nginx)port 
+-> kubectl create deployment nginx --name nginx 
+check --> kubectl get pods 
+-> kubectl port-forward pod/pod_name 8888:80
+
+Understand --> kubectl port-forward to use loadbalancer & Ingress feature
