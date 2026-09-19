@@ -5,6 +5,8 @@ and 2 containers created for worker nodes(data plane),and kind takes the respons
 data plane to control plane.
 Note: During EKS OR AKS  k8 cluster is created under VM .
 
+Check kubectl version : kubectl version --client
+
 Prerequisite for Windowds:
 1) Docker Desktop should be up and running . check docker info or docker --version
 2) kind should be installed using power shell user check kind installation documents for windows , check kind --version
